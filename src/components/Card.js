@@ -26,7 +26,7 @@ const Card = ({
           </div>
 
           <div className='d-flex justify-content-between'>
-            <div className='d-flex'>
+            <div className='d-flex pointer'>
               <img
                 src='/assets/arrow-up-short.svg'
                 style={{ width: '20px' }}
@@ -34,7 +34,7 @@ const Card = ({
               />
               <div className='text-secondary pt-1'>Up Vote</div>
             </div>
-            <div className='d-flex'>
+            <div className='d-flex pointer'>
               <img
                 src='/assets/arrow-down-short.svg'
                 style={{ width: '20px' }}

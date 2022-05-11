@@ -8,8 +8,6 @@
   box-sizing: border-box;
 }
 
-
-
 .nav-holder {
   padding-top: 20px;
   padding-bottom: 10px;
@@ -49,3 +47,14 @@
   height: 85px;
 }
 
+
+
+/* CUSTOM STYLES*/
+
+.pointer {
+  cursor: pointer;
+}
+
+.round {
+  border-radius: 10px !important;
+}
