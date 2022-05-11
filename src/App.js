@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header';
+import LinkContext from './contexts/Link/LinkContext';
+import AddLink from './views/AddLink';
+import Homepage from './views/Homepage';
 
 function App() {
+  const { state } = useContext(LinkContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <Header />
+      <Router>
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/add' element={<AddLink />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
