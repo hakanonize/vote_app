@@ -45,6 +45,11 @@
 
 .card-holder {
   height: 85px;
+  
+}
+
+.card-holder.link {
+  background-color: #ebe8e8;
 }
 
 
@@ -57,4 +62,11 @@
 
 .round {
   border-radius: 10px !important;
+}
+
+.seperator {
+  border: 1px solid #ebe8e8;
+  position: relative;
+  width: calc(100% + 5px);
+  left: -10px;
 }

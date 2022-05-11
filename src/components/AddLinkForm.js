@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { addLinkToStorage } from '../context/actions/LinkActions';
+import LinkContext from '../context/contexts/LinkContext';
+import { isLinkValid } from '../context/utils/validator';
 
 const AddLinkForm = () => {
+  const [name, setName] = useState();
+  const [url, setUrl] = useState();
+  const { links, dispatch } = useContext(LinkContext);
+
+  const onSubmit = () => {
+    const isValid = name && url && isLinkValid(url);
+    if (isValid) {
+      addLinkToStorage(dispatch, { title: name, url: url, points: 0 });
+      alert('added');
+    }
+  };
+
   return (
     <>
       <form>
@@ -9,6 +24,7 @@ const AddLinkForm = () => {
           <input
             type='text'
             name='name'
+            onChange={(e) => setName(e.target.value)}
             className='form-control'
             placeholder='MDN'
           />
@@ -19,13 +35,19 @@ const AddLinkForm = () => {
           <input
             type='text'
             name='url'
+            onChange={(e) => setUrl(e.target.value)}
             className='form-control'
             placeholder='https://developer.mozilla.org'
           />
         </div>
       </form>
 
-      <div className='btn btn-lg btn-dark mt-3 float-end round'>ADD</div>
+      <div
+        className='btn btn-lg btn-dark mt-3 float-end round'
+        onClick={onSubmit}
+      >
+        ADD
+      </div>
     </>
   );
 };

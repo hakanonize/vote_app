@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
-import LinkContext from './contexts/Link/LinkContext';
+import LinkContext from './context/contexts/LinkContext';
 import AddLink from './views/AddLink';
 import Homepage from './views/Homepage';
 
