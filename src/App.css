@@ -4,8 +4,11 @@
 *::after {
   margin: 0;
   padding: 0;
+  font-size: 12px;
   box-sizing: border-box;
 }
+
+
 
 .nav-holder {
   padding-top: 20px;
@@ -14,13 +17,22 @@
 }
 
 .nav-holder > .brand-text {
-  font-size: 30px;
+  font-size: 30px ;
 }
+.nav-holder > .brand-text > span {
+  font-size: 30px ;
+}
+
 .nav-holder > .data-text {
   font-size: 23px;
   color: grey;
   padding-top: .3rem;
 }
+.nav-holder > .data-text > span{
+  font-size: 23px;
+
+}
+
 
 .brand-text > span  {
   color: grey;
@@ -34,5 +46,6 @@
 }
 
 .card-holder {
-  height: 70px;
+  height: 85px;
 }
+
