@@ -6,13 +6,17 @@ import { isLinkValid } from '../context/utils/validator';
 const AddLinkForm = () => {
   const [name, setName] = useState();
   const [url, setUrl] = useState();
-  const { links, dispatch } = useContext(LinkContext);
-
+  const { state, dispatch } = useContext(LinkContext);
+  const { links } = state;
   const onSubmit = () => {
     const isValid = name && url && isLinkValid(url);
     if (isValid) {
-      addLinkToStorage(dispatch, { title: name, url: url, points: 0 });
-      alert('added');
+      const success = addLinkToStorage(
+        dispatch,
+        { title: name, url: url, points: 0 },
+        links
+      );
+      success && alert('SuccessFully Added');
     }
   };
 

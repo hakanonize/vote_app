@@ -7,3 +7,16 @@ export const isLinkValid = (link) => {
     return true;
   } else return false;
 };
+
+export const isUnique = (links, newLink) => {
+  let counter = 0;
+
+  links.map((link) => {
+    if (link.title === newLink.title) {
+      counter++;
+    }
+  });
+
+  if (counter !== 0) return false;
+  else return true;
+};

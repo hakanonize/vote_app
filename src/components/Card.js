@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { voteLink } from '../context/actions/LinkActions';
+import LinkContext from '../context/contexts/LinkContext';
 
 const Card = ({
   title = 'Stack Overflow',
   subTitle = 'http://stackoverflow.com',
   points = 0,
 }) => {
+  const { dispatch } = useContext(LinkContext);
+  const onVote = (isUp) => {
+    voteLink(dispatch, { title: title, url: subTitle, points: points }, isUp);
+  };
   return (
     <div className='card-holder w-100 p-2 row'>
       <div className='square border col-sm-3 d-flex justify-content-center align-items-center'>
@@ -26,7 +32,7 @@ const Card = ({
           </div>
 
           <div className='d-flex justify-content-between'>
-            <div className='d-flex pointer'>
+            <div className='d-flex pointer' onClick={() => onVote(true)}>
               <img
                 src='/assets/arrow-up-short.svg'
                 style={{ width: '20px' }}
@@ -34,7 +40,7 @@ const Card = ({
               />
               <div className='text-secondary pt-1'>Up Vote</div>
             </div>
-            <div className='d-flex pointer'>
+            <div className='d-flex pointer' onClick={() => onVote(false)}>
               <img
                 src='/assets/arrow-down-short.svg'
                 style={{ width: '20px' }}
