@@ -45,11 +45,16 @@ const Homepage = () => {
     }
   }, [page]);
 
-  console.log(links.sort(compareFunc).reverse());
+  const sortFunc = () => {
+    const sortedList = isAsc
+      ? links.sort(compareFunc)
+      : links.sort(compareFunc).reverse();
+
+    setSorted(sortedList);
+  };
 
   useEffect(() => {
-    if (isAsc) setSorted(links.sort(compareFunc));
-    else setSorted(links.sort(compareFunc).reverse());
+    sortFunc();
   }, [state, isAsc]);
 
   useEffect(() => {
@@ -78,8 +83,8 @@ const Homepage = () => {
     <div className='mt-3 card-container mx-auto w-25 d-flex flex-column'>
       <select
         name='order'
-        defaultValue={isAsc}
         disabled
+        defaultValue={isAsc}
         onChange={(e) => {
           setIsAsc(e.target.value);
         }}
@@ -91,6 +96,7 @@ const Homepage = () => {
       </select>
       <AddLinkCard />
       <div className='seperator mt-2'></div>
+
       {sorted.length > 0 &&
         sorted.slice(indexes[0], indexes[1]).map((link, index) => {
           return (
