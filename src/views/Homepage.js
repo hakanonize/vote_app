@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import { getLinksFromStorage } from '../context/actions/LinkActions';
 import LinkContext from '../context/contexts/LinkContext';
-import { compareFunc } from '../context/utils/calc';
+import { compareFunc } from '../utils/calc';
 
 const AddLinkCard = () => {
   const navigate = useNavigate();

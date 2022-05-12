@@ -1,5 +1,3 @@
-import { act } from 'react-dom/test-utils';
-
 const LinkReducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_LINKS':

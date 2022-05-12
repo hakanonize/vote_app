@@ -1,4 +1,4 @@
-import { isUnique } from '../utils/validator';
+import { isUnique } from '../../utils/validator';
 
 export const getLinksFromStorage = (dispatch) => {
   const links = JSON.parse(localStorage.getItem('links'));

@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { addLinkToStorage } from '../context/actions/LinkActions';
 import LinkContext from '../context/contexts/LinkContext';
-import { isLinkValid } from '../context/utils/validator';
+import { isLinkValid } from '../utils/validator';
 
 const AddLinkForm = () => {
   const [name, setName] = useState();
   const [url, setUrl] = useState();
   const { state, dispatch } = useContext(LinkContext);
   const { links } = state;
+
   const onSubmit = () => {
     const isValid = name && url && isLinkValid(url);
     if (isValid) {
