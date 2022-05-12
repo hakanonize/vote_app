@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import { getLinksFromStorage } from '../context/actions/LinkActions';
 import LinkContext from '../context/contexts/LinkContext';
-import { compareFunc } from '../utils/calc';
 
 const AddLinkCard = () => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const AddLinkCard = () => {
 const Homepage = () => {
   const { state, dispatch } = useContext(LinkContext);
   const { links } = state;
-  const [isAsc, setIsAsc] = useState(false);
+  const [isAsc, setIsAsc] = useState('desc');
   const [sorted, setSorted] = useState([]);
   const [linkCount, setLinkCount] = useState();
   const [indexes, setIndexes] = useState([0, 5]);
@@ -45,17 +44,10 @@ const Homepage = () => {
     }
   }, [page]);
 
-  const sortFunc = () => {
-    const sortedList = isAsc
-      ? links.sort(compareFunc)
-      : links.sort(compareFunc).reverse();
-
-    setSorted(sortedList);
-  };
-
   useEffect(() => {
-    sortFunc();
-  }, [state, isAsc]);
+    if (isAsc === 'asc') dispatch({ type: 'SORT_LINKS_ASC' });
+    else dispatch({ type: 'SORT_LINKS_DESC' });
+  }, [isAsc, links]);
 
   useEffect(() => {
     getLinksFromStorage(dispatch);
@@ -83,7 +75,6 @@ const Homepage = () => {
     <div className='mt-3 card-container mx-auto w-25 d-flex flex-column'>
       <select
         name='order'
-        disabled
         defaultValue={isAsc}
         onChange={(e) => {
           setIsAsc(e.target.value);
@@ -91,14 +82,14 @@ const Homepage = () => {
         className='w-50 mb-3'
       >
         <option disabled>Order By</option>
-        <option value={false}>Descending</option>
-        <option value={true}>Ascending</option>
+        <option value='desc'>Descending</option>
+        <option value='asc'>Ascending</option>
       </select>
       <AddLinkCard />
       <div className='seperator mt-2'></div>
 
-      {sorted.length > 0 &&
-        sorted.slice(indexes[0], indexes[1]).map((link, index) => {
+      {links.length > 0 &&
+        links.slice(indexes[0], indexes[1]).map((link, index) => {
           return (
             <div className='mt-4' key={index}>
               <Card
@@ -106,12 +97,13 @@ const Homepage = () => {
                 subTitle={link.url}
                 points={link.points}
                 key={index}
+                orderType={isAsc}
               />
             </div>
           );
         })}
 
-      {sorted.length > 5 && (
+      {links.length > 5 && (
         <div className='d-flex mt-5 w-50 mx-auto justify-content-between'>
           <img
             src='/assets/arrow-left-short.svg'

@@ -22,6 +22,15 @@ export const LinkProvider = ({ children }) => {
       //   points: 4,
       // },
     ],
+    toast: {
+      active: false,
+      type: 'success',
+      text: 'MDN Added',
+    },
+    deleteModal: {
+      active: false,
+      name: '',
+    },
   };
 
   const [state, dispatch] = useReducer(LinkReducer, initialState);
