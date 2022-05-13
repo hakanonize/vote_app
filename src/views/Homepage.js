@@ -36,10 +36,10 @@ const Homepage = () => {
   }, [links]);
 
   useEffect(() => {
+    console.log(page);
     if (page === 1) {
       setIndexes([0, 5]);
-    }
-    if (page === 2) {
+    } else if (page === 2) {
       setIndexes([5, 10]);
     }
   }, [page]);
@@ -70,7 +70,7 @@ const Homepage = () => {
         break;
     }
   };
-
+  console.log(indexes);
   return (
     <div className='mt-3 card-container mx-auto w-25 d-flex flex-column'>
       <select
@@ -123,6 +123,17 @@ const Homepage = () => {
             <span className='text-center '>2</span>
           </div>
 
+          {linkCount > 2 && (
+            <div
+              className='card w-25 pointer'
+              onClick={() => {
+                setIndexes([(linkCount - 1) * 5, linkCount * 5]);
+                setPage(linkCount);
+              }}
+            >
+              <span className='text-center '>{linkCount}</span>
+            </div>
+          )}
           <img
             src='/assets/arrow-right-short.svg'
             style={{ width: '20px' }}
