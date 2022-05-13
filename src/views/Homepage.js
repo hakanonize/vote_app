@@ -36,7 +36,6 @@ const Homepage = () => {
   }, [links]);
 
   useEffect(() => {
-    console.log(page);
     if (page === 1) {
       setIndexes([0, 5]);
     } else if (page === 2) {
@@ -70,7 +69,6 @@ const Homepage = () => {
         break;
     }
   };
-  console.log(indexes);
   return (
     <div className='mt-3 card-container mx-auto w-25 d-flex flex-column'>
       <select
